@@ -133,18 +133,19 @@ UpdateSleepTime HelixContain::update()
 }
 
 
-void HelixContain::redeployOccupants( void )
+void HelixContain::redeployOccupants(void)
 {
-  Coord3D firePos = *getObject()->getPosition();
-  firePos.z += 8;
-  
-
-	for (ContainedItemsList::iterator it = m_containList.begin(); it != m_containList.end(); ++it)
-  {
-    Object* rider = *it;
-    if (rider)
-      rider->setPosition( &firePos );
-  }
+	// by AndiW from Andreas-W/GeneralsGameCode_Modding/commit/d662b1fe4e55489454bc944915fb0adab0d23528
+	// Removed by AndiW: This restores proper firebones, if the parent vehicle model has them
+	// Coord3D firePos = *getObject()->getPosition();
+	// firePos.z += 8;
+	// for (ContainedItemsList::iterator it = m_containList.begin(); it != m_containList.end(); ++it)
+	// {
+	//   Object* rider = *it;
+	//   if (rider)
+	//     rider->setPosition( &firePos );
+	// }
+	OpenContain::redeployOccupants();
 }
 
 
