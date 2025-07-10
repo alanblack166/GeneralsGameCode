@@ -104,6 +104,26 @@ void ArmorUpgrade::upgradeImplementation( )
 	}
 }
 
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+Bool ArmorUpgrade::attemptUpgrade(UpgradeMaskType keyMask)
+
+// Simple logic: we check if the object has an accessible drawable/draw module. 
+// If it doesn't - postpone upgrade activation.
+// VeterancyGainCreate forced the ArmorUpgrade to initialize before the drawable,
+// causing the Chemsuit + Veterancy crash.
+{
+    if (isTriggeredBy("Upgrade_AmericaChemicalSuits"))
+    {
+        Drawable* draw = getObject()->getDrawable();
+        if (!draw) {
+            return false;
+        }
+    }
+
+    return UpgradeMux::attemptUpgrade(keyMask);
+}
+
 // ------------------------------------------------------------------------------------------------
 /** CRC */
 // ------------------------------------------------------------------------------------------------

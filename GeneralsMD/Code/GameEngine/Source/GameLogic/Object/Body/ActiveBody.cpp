@@ -407,12 +407,18 @@ void ActiveBody::attemptDamage( DamageInfo *damageInfo )
 					{
 						//Removing the rider will scuttle the bike.
 						Object *rider = *(contain->getContainedItemsList()->begin());
+
+						// Score the kill before killing
+						if (damager && rider) {
+							damager->scoreTheKill(rider);
+						}
+
 						ai->aiEvacuateInstantly( TRUE, CMD_FROM_AI );
 
 						//Kill the rider.
-						if (damager)
-							damager->scoreTheKill( rider );
-						rider->kill();
+						if (rider) {
+							rider->kill();
+						}
 					}
 				}
 				else
