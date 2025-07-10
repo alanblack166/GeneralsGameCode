@@ -80,6 +80,7 @@ const char* ObjectStatusMaskType::s_bitNameList[] =
 	"IMMOBILE",
 	"DISGUISED",
 	"DEPLOYED",
+	"CAN_COMBATDROP",
 	NULL
 };
 

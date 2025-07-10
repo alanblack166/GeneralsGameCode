@@ -993,7 +993,7 @@ static Int getRappellerCount(Object* obj)
 	{
 		for (ContainedItemsList::const_iterator it = items->begin(); it != items->end(); ++it )
 		{
-			if ((*it)->isKindOf(KINDOF_CAN_RAPPEL))
+			if ((*it)->isKindOf(KINDOF_CAN_RAPPEL) || (*it)->testStatus(OBJECT_STATUS_CAN_COMBATDROP))
 			{
 				++num;
 			}

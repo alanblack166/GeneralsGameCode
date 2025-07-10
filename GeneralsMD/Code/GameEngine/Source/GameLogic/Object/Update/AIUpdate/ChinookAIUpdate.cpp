@@ -98,7 +98,7 @@ static Object* getPotentialRappeller(Object* obj)
 		for (ContainedItemsList::const_iterator it = items->begin(); it != items->end(); ++it )
 		{
 			Object* rider = *it;
-			if (rider->isKindOf(KINDOF_CAN_RAPPEL))
+			if (rider->isKindOf(KINDOF_CAN_RAPPEL) || rider->testStatus(OBJECT_STATUS_CAN_COMBATDROP))
 			{
 				return rider;
 			}
@@ -1038,10 +1038,10 @@ ObjectID ChinookAIUpdate::getBuildingToNotPathAround() const
 }
 
 //-------------------------------------------------------------------------------------------------
-AIFreeToExitType ChinookAIUpdate::getAiFreeToExit(const Object* exiter) const 
-{ 
-	 if (m_flightStatus == CHINOOK_LANDED 
-				|| (m_flightStatus == CHINOOK_DOING_COMBAT_DROP && exiter->isKindOf(KINDOF_CAN_RAPPEL)))
+AIFreeToExitType ChinookAIUpdate::getAiFreeToExit(const Object* exiter) const
+{
+	if (m_flightStatus == CHINOOK_LANDED
+		|| (m_flightStatus == CHINOOK_DOING_COMBAT_DROP && (exiter->isKindOf(KINDOF_CAN_RAPPEL)) || exiter->testStatus(OBJECT_STATUS_CAN_COMBATDROP)))
 		return FREE_TO_EXIT;
 	
 	return WAIT_TO_EXIT; 

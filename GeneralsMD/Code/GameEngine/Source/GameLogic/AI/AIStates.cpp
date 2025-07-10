@@ -500,7 +500,7 @@ void AIRappelState::loadPostProcess( void )
 StateReturnType AIRappelState::onEnter()
 {
 	Object* obj = getMachineOwner();
-	if (!obj->isKindOf(KINDOF_CAN_RAPPEL))
+	if (!obj->isKindOf(KINDOF_CAN_RAPPEL) || !obj->testStatus(OBJECT_STATUS_CAN_COMBATDROP))
 		return STATE_FAILURE;
 
 	//AIUpdateInterface* ai = obj->getAI();
