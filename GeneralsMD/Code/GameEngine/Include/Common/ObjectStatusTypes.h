@@ -83,7 +83,7 @@ enum ObjectStatusTypes CPP_11(: Int)
 	OBJECT_STATUS_RIDER7,
 	OBJECT_STATUS_RIDER8,
 	OBJECT_STATUS_FAERIE_FIRE,			///< Anyone shooting at you shoots faster than normal
-  OBJECT_STATUS_MISSILE_KILLING_SELF, ///< Object (likely a missile or bomb) is *BUSTING* its way through the *BUNKER*, building or ground, awaiting death at the bottom.
+    OBJECT_STATUS_MISSILE_KILLING_SELF, ///< Object (likely a missile or bomb) is *BUSTING* its way through the *BUNKER*, building or ground, awaiting death at the bottom.
 	OBJECT_STATUS_REASSIGN_PARKING,			///< Jet is trying to get a better parking assignment.
 	OBJECT_STATUS_BOOBY_TRAPPED,				///< We need to know we have a booby trap on us so we can detonate it from many different code segments
 	OBJECT_STATUS_IMMOBILE,							///< Do not move!
@@ -103,8 +103,9 @@ enum ObjectStatusTypes CPP_11(: Int)
 	OBJECT_STATUS_GRANTS_BOUNTY,				///< Object grants a bounty when killed
 	OBJECT_STATUS_CONSUMES_NO_POWER,			///< Object does not consume power
 	OBJECT_STATUS_CANNOT_GAIN_EXPERIENCE,	///< Object cannot gain experience
+	OBJECT_STATUS_VULNERABILITY,   /// Object takes more damage from all sources
+	OBJECT_STATUS_IRON_CURTAIN,   /// Object is under the effect of an Iron Curtain, and is invulnerable to damage
 	OBJECT_STATUS_COUNT
-
 };
 
 typedef BitFlags<OBJECT_STATUS_COUNT>	ObjectStatusMaskType;

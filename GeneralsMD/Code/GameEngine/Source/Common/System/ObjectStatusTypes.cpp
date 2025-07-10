@@ -92,6 +92,8 @@ const char* ObjectStatusMaskType::s_bitNameList[] =
 	"GRANTS_BOUNTY",
 	"CONSUMES_NO_POWER",
 	"CANNOT_GAIN_EXPERIENCE",
+	"VULNERABILITY",
+	"IRON_CURTAIN",
 	NULL
 };
 
