@@ -90,7 +90,19 @@ enum ObjectStatusTypes CPP_11(: Int)
 	OBJECT_STATUS_DISGUISED,						///< Object is disguised (a type of stealth)
 	OBJECT_STATUS_DEPLOYED,							///< Object is deployed.
 	// add more status types here and don't forget to add to the string table ObjectStatusMaskType::s_bitNameList[]
+	// @hanfield new statuses
 	OBJECT_STATUS_CAN_COMBATDROP,						///< Object can be used in Combat Drops
+	OBJECT_STATUS_IMMOBILIZED,					///< Object is immobilized
+	OBJECT_STATUS_CANNOT_HEAL,					///< Object cannot be healed or repaired, and cannot interact with repair pads.
+	OBJECT_STATUS_CANNOT_BE_GARRISONED,	///< Object cannot be garrisoned.
+	OBJECT_STATUS_CANNOT_BE_CLEARED_BY_GARRISON_CLEARING,	///< Object cannot be cleared by garrison clearers.
+	OBJECT_STATUS_DOES_NOT_TRIGGER_MINES,		///< Object does not trigger mines.
+	OBJECT_STATUS_IMMUNE_TO_MINE_DAMAGE,	///< Object is immune to mine damage that is dealt by a MinefieldBehavior object.
+	OBJECT_STATUS_DOES_NOT_TRIGGER_BOOBYTRAPS,		///< Object does not trigger booby traps
+	OBJECT_STATUS_TURN_DAMAGE_TO_HEALTH,		///< Object will heal for the damage it deals to other units.
+	OBJECT_STATUS_GRANTS_BOUNTY,				///< Object grants a bounty when killed
+	OBJECT_STATUS_CONSUMES_NO_POWER,			///< Object does not consume power
+	OBJECT_STATUS_CANNOT_GAIN_EXPERIENCE,	///< Object cannot gain experience
 	OBJECT_STATUS_COUNT
 
 };
