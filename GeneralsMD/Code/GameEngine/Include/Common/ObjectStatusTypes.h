@@ -102,7 +102,9 @@ enum ObjectStatusTypes CPP_11(: Int)
 	OBJECT_STATUS_TURN_DAMAGE_TO_HEALTH,		///< Object will heal for the damage it deals to other units.
 	OBJECT_STATUS_GRANTS_BOUNTY,				///< Object grants a bounty when killed
 	OBJECT_STATUS_CONSUMES_NO_POWER,			///< Object does not consume power
-	OBJECT_STATUS_CANNOT_GAIN_EXPERIENCE,	///< Object cannot gain experience
+	OBJECT_STATUS_CANNOT_GAIN_UNIT_XP,	///< Object cannot gain experience
+	OBJECT_STATUS_CANNOT_GAIN_RANK_XP,
+	OBJECT_STATUS_CANNOT_GAIN_ANY_XP,
 	OBJECT_STATUS_VULNERABILITY,   /// Object takes more damage from all sources
 	OBJECT_STATUS_IRON_CURTAIN,   /// Object is under the effect of an Iron Curtain, and is invulnerable to damage
 	OBJECT_STATUS_COUNT
