@@ -2499,6 +2499,9 @@ Bool Player::addSkillPointsForKill(const Object* killer, const Object* victim)
 	// srj sez: per dustin, no experience (et al) for killing things under construction.
 	if (victim->testStatus(OBJECT_STATUS_UNDER_CONSTRUCTION))
 		return false;
+	// no skill points if we're affected by the relevant status.
+	if (killer->testStatus(OBJECT_STATUS_CANNOT_GAIN_RANK_XP))
+		return false;
 	
 	Int victimLevel = victim->getVeterancyLevel();
 	Int skillValue = victim->getTemplate()->getSkillPointValue(victimLevel);
