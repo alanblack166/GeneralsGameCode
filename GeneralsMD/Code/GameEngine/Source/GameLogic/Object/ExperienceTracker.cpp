@@ -94,7 +94,7 @@ void ExperienceTracker::setMinVeterancyLevel( VeterancyLevel newLevel )
 	// so the setter is assumed to know what they are doing.  The game function
 	// of addExperiencePoints cares about Trainability.
 	// If killer is affected by this status - no vet for him!
-	if (m_currentLevel < newLevel && !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP) || !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_ANY_XP))
+	if (m_currentLevel < newLevel && (!m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP) || !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_ANY_XP)))
 	{
 		VeterancyLevel oldLevel = m_currentLevel;
 		m_currentLevel = newLevel;
@@ -111,7 +111,7 @@ void ExperienceTracker::setVeterancyLevel( VeterancyLevel newLevel, Bool provide
 	// so the setter is assumed to know what they are doing.  The game function
 	// of addExperiencePoints cares about Trainability, if flagged thus.
 	// If killer is affected by this status - no vet for him!
-	if (m_currentLevel != newLevel && !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP) || !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_ANY_XP))
+	if (m_currentLevel != newLevel && (!m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP) || !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_ANY_XP)))
 	{
 		VeterancyLevel oldLevel = m_currentLevel;
 		m_currentLevel = newLevel;
