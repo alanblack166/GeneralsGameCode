@@ -2500,7 +2500,7 @@ Bool Player::addSkillPointsForKill(const Object* killer, const Object* victim)
 	if (victim->testStatus(OBJECT_STATUS_UNDER_CONSTRUCTION))
 		return false;
 	// no skill points if we're affected by the relevant status.
-	if (killer->testStatus(OBJECT_STATUS_CANNOT_GAIN_RANK_XP))
+	if (killer->testStatus(OBJECT_STATUS_CANNOT_GAIN_RANK_XP) || killer->testStatus(OBJECT_STATUS_CANNOT_GAIN_ANY_XP))
 		return false;
 	
 	Int victimLevel = victim->getVeterancyLevel();

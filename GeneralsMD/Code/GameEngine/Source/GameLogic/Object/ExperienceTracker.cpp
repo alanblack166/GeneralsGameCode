@@ -59,7 +59,7 @@ Int ExperienceTracker::getExperienceValue( const Object* killer ) const
 	if( killer->getRelationship( m_parent ) == ALLIES )
 		return 0;
 	// If killer is affected by this status - no experience for him!
-	if (killer->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP))
+	if (killer->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP) || killer->testStatus(OBJECT_STATUS_CANNOT_GAIN_ANY_XP))
 		return 0;
 
 	return m_parent->getTemplate()->getExperienceValue(m_currentLevel);
@@ -69,14 +69,14 @@ Int ExperienceTracker::getExperienceValue( const Object* killer ) const
 Bool ExperienceTracker::isTrainable() const
 {
 	// If killer is affected by this status - not trainable!
-	if(!m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP))
+	if(!m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP) || !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_ANY_XP))
 	return m_parent->getTemplate()->isTrainable();
 }
 
 //-------------------------------------------------------------------------------------------------
 Bool ExperienceTracker::isAcceptingExperiencePoints() const
 {
-	if (!m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP))
+	if (!m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP) || !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_ANY_XP))
 	return isTrainable() || (m_experienceSink != INVALID_ID);
 }
 
@@ -94,7 +94,7 @@ void ExperienceTracker::setMinVeterancyLevel( VeterancyLevel newLevel )
 	// so the setter is assumed to know what they are doing.  The game function
 	// of addExperiencePoints cares about Trainability.
 	// If killer is affected by this status - no vet for him!
-	if (m_currentLevel < newLevel && !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP))
+	if (m_currentLevel < newLevel && !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP) || !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_ANY_XP))
 	{
 		VeterancyLevel oldLevel = m_currentLevel;
 		m_currentLevel = newLevel;
@@ -111,7 +111,7 @@ void ExperienceTracker::setVeterancyLevel( VeterancyLevel newLevel, Bool provide
 	// so the setter is assumed to know what they are doing.  The game function
 	// of addExperiencePoints cares about Trainability, if flagged thus.
 	// If killer is affected by this status - no vet for him!
-	if (m_currentLevel != newLevel && !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP))
+	if (m_currentLevel != newLevel && !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP) || !m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_ANY_XP))
 	{
 		VeterancyLevel oldLevel = m_currentLevel;
 		m_currentLevel = newLevel;
@@ -165,7 +165,7 @@ void ExperienceTracker::addExperiencePoints( Int experienceGain, Bool canScaleFo
 	if( !isTrainable() )
 		return; //safety
 
-	if (m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP))
+	if (m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP) || m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_ANY_XP))
 		return; // we can't gain experience with this status
 
 	VeterancyLevel oldLevel = m_currentLevel;
@@ -213,7 +213,7 @@ void ExperienceTracker::setExperienceAndLevel( Int experienceIn, Bool provideFee
 	if( !isTrainable() )
 		return; //safety
 
-	if (m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP))
+	if (m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_UNIT_XP) || m_parent->testStatus(OBJECT_STATUS_CANNOT_GAIN_ANY_XP))
 		return; // we can't gain experience with this status
 
 	VeterancyLevel oldLevel = m_currentLevel;
