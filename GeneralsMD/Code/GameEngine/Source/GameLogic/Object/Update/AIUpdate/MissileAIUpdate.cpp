@@ -335,7 +335,7 @@ Bool MissileAIUpdate::projectileHandleCollision( Object *other )
 		if (d->m_garrisonHitKillCount > 0)
 		{
 			ContainModuleInterface* contain = other->getContain();
-			if( contain && contain->getContainCount() > 0 && contain->isGarrisonable() && !contain->isImmuneToClearBuildingAttacks() )
+			if( contain && contain->getContainCount() > 0 && contain->isGarrisonable() && !contain->isImmuneToClearBuildingAttacks() && !other->testStatus(OBJECT_STATUS_CANNOT_BE_CLEARED_BY_GARRISON_CLEARING))
 			{
 				Int numKilled = 0;
 

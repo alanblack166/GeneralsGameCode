@@ -614,7 +614,7 @@ Real WeaponTemplate::estimateWeaponTemplateDamage(
 	if ( damageType == DAMAGE_SURRENDER || m_allowAttackGarrisonedBldgs )
 	{
 		ContainModuleInterface* contain = victimObj->getContain();
-		if( contain && contain->getContainCount() > 0 && contain->isGarrisonable() && !contain->isImmuneToClearBuildingAttacks() )
+		if( contain && contain->getContainCount() > 0 && contain->isGarrisonable() && !contain->isImmuneToClearBuildingAttacks() && !victimObj->testStatus(OBJECT_STATUS_CANNOT_BE_CLEARED_BY_GARRISON_CLEARING))
 		{
 			// this is just a nonzero value, to ensure we can target garrisoned things with surrender weapons, regardless...
 			return 1.0f;

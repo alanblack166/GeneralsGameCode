@@ -291,7 +291,7 @@ Real ActiveBody::estimateDamage( DamageInfoInput& damageInfo ) const
 	if( damageInfo.m_damageType == DAMAGE_KILL_GARRISONED )
 	{
 		ContainModuleInterface* contain = getObject()->getContain();
-		if( contain && contain->getContainCount() > 0 && contain->isGarrisonable() && !contain->isImmuneToClearBuildingAttacks() )
+		if( contain && contain->getContainCount() > 0 && contain->isGarrisonable() && !contain->isImmuneToClearBuildingAttacks() && !getObject()->testStatus(OBJECT_STATUS_CANNOT_BE_CLEARED_BY_GARRISON_CLEARING))
 			return 1.0f;
 		else
 			return 0.0f;
@@ -454,7 +454,7 @@ void ActiveBody::attemptDamage( DamageInfo *damageInfo )
 
 			Int killsToMake = REAL_TO_INT_FLOOR(damageInfo->in.m_amount);
 			ContainModuleInterface* contain = obj->getContain();
-			if( contain && contain->getContainCount() > 0 && contain->isGarrisonable() && !contain->isImmuneToClearBuildingAttacks() )
+			if( contain && contain->getContainCount() > 0 && contain->isGarrisonable() && !contain->isImmuneToClearBuildingAttacks() && !obj->testStatus(OBJECT_STATUS_CANNOT_BE_CLEARED_BY_GARRISON_CLEARING))
 			{
 				Int numKilled = 0;
 
