@@ -810,6 +810,8 @@ void ActiveBody::attemptHealing( DamageInfo *damageInfo )
 	}
 
 	Object* obj = getObject();
+	if (obj->testStatus(OBJECT_STATUS_CANNOT_HEAL))
+		return;
 
 	// srj sez: sorry, once yer dead, yer dead.
 	// Special case for bridges, cause the system now things they're dead
