@@ -886,6 +886,9 @@ Bool OpenContain::isValidContainerFor(const Object* obj, Bool checkCapacity) con
 		return false;
 	}
 
+	if (us->testStatus(OBJECT_STATUS_CANNOT_BE_GARRISONED))
+		return false;
+
  	//
  	// check relationship, note that this behavior is defined as the relation between
  	// 'obj' and the container 'us', and not the reverse

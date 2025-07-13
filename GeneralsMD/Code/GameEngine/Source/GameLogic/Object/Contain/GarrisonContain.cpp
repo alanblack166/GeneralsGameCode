@@ -564,6 +564,10 @@ Bool GarrisonContain::isValidContainerFor(const Object* obj, Bool checkCapacity)
 	if( getObject()->getBodyModule()->getDamageState() == BODY_REALLYDAMAGED && !getObject()->isKindOf( KINDOF_GARRISONABLE_UNTIL_DESTROYED ) )
 		return false;
 
+	// objects with this statuc are not garrisonable.
+	if (getObject()->testStatus(OBJECT_STATUS_CANNOT_BE_GARRISONED))
+		return false;
+
 	if (obj && !obj->isKindOf(KINDOF_NO_GARRISON))
 	{
 		if (checkCapacity)
