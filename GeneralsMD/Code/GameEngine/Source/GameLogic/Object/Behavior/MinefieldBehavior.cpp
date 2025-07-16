@@ -345,6 +345,9 @@ void MinefieldBehavior::onCollide( Object *other, const Coord3D *loc, const Coor
 	if (m_virtualMinesRemaining == 0)
 		return;
 
+	if (other->testStatus(OBJECT_STATUS_DOES_NOT_TRIGGER_MINES))
+		return;
+
 	Object* obj = getObject();
 	const MinefieldBehaviorModuleData* d = getMinefieldBehaviorModuleData();
 	UnsignedInt now = TheGameLogic->getFrame();
