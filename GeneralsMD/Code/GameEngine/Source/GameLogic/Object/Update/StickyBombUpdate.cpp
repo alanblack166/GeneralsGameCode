@@ -264,8 +264,10 @@ void StickyBombUpdate::detonate()
 			
 			for (; curVictim != NULL; curVictim = iter ? iter->nextWithNumeric(&curVictimDistSqr) : NULL)
 			{
-				damageInfo.in.m_amount = (curVictimDistSqr <= primaryDamageRangeSqr) ? primaryDamage : secondaryDamage;
-				curVictim->attemptDamage(&damageInfo);
+				if (!curVictim->testStatus(OBJECT_STATUS_DOES_NOT_TRIGGER_BOOBYTRAPS)) {
+					damageInfo.in.m_amount = (curVictimDistSqr <= primaryDamageRangeSqr) ? primaryDamage : secondaryDamage;
+					curVictim->attemptDamage(&damageInfo);
+				}
 			}
 
 			if( data->m_geometryBasedDamageFX )
