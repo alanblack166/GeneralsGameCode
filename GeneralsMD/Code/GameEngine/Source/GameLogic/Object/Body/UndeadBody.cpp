@@ -77,6 +77,10 @@ void UndeadBody::attemptDamage( DamageInfo *damageInfo )
 {
 	// If we are on our first life, see if this damage will kill us.  If it will, bind it to one hitpoint
 	// remaining, then go ahead and take it.
+	Object* obj = getObject();
+	if (obj->testStatus(OBJECT_STATUS_IRON_CURTAIN))
+		return;
+
 	Bool shouldStartSecondLife = FALSE;
 
 	if( damageInfo->in.m_damageType != DAMAGE_UNRESISTABLE  

@@ -348,14 +348,17 @@ void ActiveBody::attemptDamage( DamageInfo *damageInfo )
 	if ( m_indestructible )
 		return;
 
+	Object* obj = getObject();
+	if (obj->testStatus(OBJECT_STATUS_IRON_CURTAIN))
+		return;
+	if (obj->isEffectivelyDead())
+		return;
+
 	// initialize these, just in case we bail out early
 	damageInfo->out.m_actualDamageDealt = 0.0f;
 	damageInfo->out.m_actualDamageClipped = 0.0f;
 
 	// we cannot damage again objects that are already dead
-	Object* obj = getObject();
-	if( obj->isEffectivelyDead() )
-		return;
 
 	Object *damager = TheGameLogic->findObjectByID( damageInfo->in.m_sourceID );
 	if( damager )

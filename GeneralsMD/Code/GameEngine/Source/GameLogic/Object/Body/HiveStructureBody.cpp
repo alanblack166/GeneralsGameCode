@@ -70,6 +70,9 @@ void HiveStructureBody::attemptDamage( DamageInfo *damageInfo )
 {
 	const HiveStructureBodyModuleData *data = getHiveStructureBodyModuleData();
 	Object *hive = getObject();
+
+	if (hive->testStatus(OBJECT_STATUS_IRON_CURTAIN))
+		return;
 	
 	if( getDamageTypeFlag( data->m_damageTypesToPropagateToSlaves, damageInfo->in.m_damageType ) )
 	{
